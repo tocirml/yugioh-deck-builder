@@ -1,0 +1,19 @@
+.navigation-list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style: none;
+
+  &-link {
+    font-weight: bold;
+    font-size: 20px;
+    a {
+      color: white;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  }
+}

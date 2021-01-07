@@ -1,0 +1,23 @@
+.header {
+  background-color: black;
+  color: white;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  align-items: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.logo {
+  height: 48px;
+
+  img {
+    height: 100%;
+  }
+
+  &-text {
+    position: relative;
+    bottom: 30%;
+    font-weight: bolder;
+    font-size: 30px;
+  }
+}
