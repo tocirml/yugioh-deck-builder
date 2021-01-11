@@ -2,22 +2,54 @@
   background-color: black;
   color: white;
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
   align-items: center;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: auto;
 
-.logo {
-  height: 48px;
-
-  img {
-    height: 100%;
+  a {
+    text-decoration: none;
   }
 
-  &-text {
-    position: relative;
-    bottom: 30%;
-    font-weight: bolder;
-    font-size: 30px;
+  .logo {
+    margin-left: 0.5rem;
+    min-width: 360px;
+    height: 48px;
+
+    img {
+      height: 100%;
+    }
+
+    &-text {
+      color: white;
+      display: inline;
+      position: relative;
+      bottom: 30%;
+      font-weight: bolder;
+      font-size: 30px;
+      white-space: nowrap;
+    }
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .header {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media only screen and (max-width: 530px) {
+  .header {
+    grid-template-columns: 1fr;
+
+    .logo {
+      min-width: 260px;
+
+      &-text {
+        right: 16px;
+        bottom: 40%;
+        font-size: 15px;
+      }
+    }
   }
 }

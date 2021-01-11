@@ -2,20 +2,20 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './style.scss';
 
-export const Nav = () => {
+export const Nav = ({ mobile }) => {
   return (
-    <nav className="navigation">
-      <ul className="navigation-list">
-        <li className="navigation-list-link">
+    <nav className={`navbar ${mobile ? 'mobile' : ''}`}>
+      <ul className="navbar-list">
+        <li className="navbar-list-link">
           <NavLink to="/">{`Home`}</NavLink>
         </li>
-        <li className="navigation-list-link">
+        <li className="navbar-list-link">
           <NavLink to="/card-list">{`Card List`}</NavLink>
         </li>
-        <li className="navigation-list-link">
+        <li className="navbar-list-link">
           <NavLink to="/deck-builder">{`Deck Builder`}</NavLink>
         </li>
-        <li className="navigation-list-link">
+        <li className="navbar-list-link">
           <NavLink to="/about">{`About`}</NavLink>
         </li>
       </ul>

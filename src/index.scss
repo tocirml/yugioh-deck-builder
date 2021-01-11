@@ -4,11 +4,11 @@
   box-sizing: border-box;
 }
 
-#root {
+.root {
   display: grid;
   height: 100vh;
   width: 100vw;
-  border: solid 1px black;
+  min-width: 320px;
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr auto;
   grid-template-areas:
@@ -16,21 +16,15 @@
     'main'
     'footer';
 
-  header {
-    height: 50px;
+  .header {
     grid-area: header;
-    border: solid 1px black;
   }
 
-  main {
+  .main {
     grid-area: main;
-    margin: auto;
-    max-width: 1200px;
   }
 
-  footer {
-    height: 50px;
+  .footer {
     grid-area: footer;
-    border: solid 1px black;
   }
 }

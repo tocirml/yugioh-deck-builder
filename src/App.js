@@ -13,15 +13,13 @@ import { Footer } from './components/common/Footer';
 export const App = () => (
   <>
     <Header />
-    <main className="main">
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route exact path="/card-list" component={CardListPage} />
-        <Route exact path="/deck-builder" component={DeckBuilderPage} />
-        <Route path="/about" component={AboutPage} />
-        <Route component={PageNotFound} />
-      </Switch>
-    </main>
+    <Switch>
+      <Route exact path="/" component={HomePage} />
+      <Route exact path="/card-list" component={CardListPage} />
+      <Route exact path="/deck-builder" component={DeckBuilderPage} />
+      <Route path="/about" component={AboutPage} />
+      <Route component={PageNotFound} />
+    </Switch>
     <Footer />
   </>
 );
