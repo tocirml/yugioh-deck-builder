@@ -4,14 +4,26 @@
   "description": "Create cards and build decks for Yu-Gi-Oh",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack serve --history-api-fallback",
     "build": "webpack --mode=production",
-    "dev": "webpack --mode=development"
+    "dev": "webpack --mode=development",
+    "test": "jest --coverage"
   },
   "keywords": [
     "yugioh"
   ],
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|scss|sass|less)$": "<rootDir>/__mocks__/styleMock.js"
+    },
+    "setupFiles": [
+      "./src/setupTests.js"
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
+  },
   "author": "Roberto Muñoz",
   "license": "ISC",
   "dependencies": {
@@ -24,9 +36,17 @@
     "@babel/core": "^7.12.10",
     "@babel/preset-env": "^7.12.11",
     "@babel/preset-react": "^7.12.10",
+    "@testing-library/jest-dom": "^5.11.8",
+    "@testing-library/react": "^11.2.3",
+    "@testing-library/user-event": "^12.6.0",
     "babel-loader": "^8.2.2",
     "css-loader": "^5.0.1",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.5",
+    "enzyme-to-json": "^3.6.1",
+    "eslint": "^7.17.0",
     "html-webpack-plugin": "^4.5.0",
+    "jest": "^26.6.3",
     "node-sass": "^5.0.0",
     "sass-loader": "^10.1.0",
     "style-loader": "^2.0.0",

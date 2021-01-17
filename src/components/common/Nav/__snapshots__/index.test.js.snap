@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshots Nav snapshot 1`] = `
+<nav
+  className="navbar "
+>
+  <ul
+    className="navbar-list"
+  >
+    <li
+      className="navbar-list-link"
+    >
+      <NavLink
+        to="/"
+      >
+        Home
+      </NavLink>
+    </li>
+    <li
+      className="navbar-list-link"
+    >
+      <NavLink
+        to="/card-list"
+      >
+        Card List
+      </NavLink>
+    </li>
+    <li
+      className="navbar-list-link"
+    >
+      <NavLink
+        to="/deck-builder"
+      >
+        Deck Builder
+      </NavLink>
+    </li>
+    <li
+      className="navbar-list-link"
+    >
+      <NavLink
+        to="/about"
+      >
+        About
+      </NavLink>
+    </li>
+  </ul>
+</nav>
+`;
