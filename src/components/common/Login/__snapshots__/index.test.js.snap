@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshots Anvorgesa snapshot 1`] = `
+<div
+  className="login "
+  data-testid="login"
+>
+  <a
+    className="log-in"
+    href="#"
+  >
+    Login
+  </a>
+  <a
+    className="sign-up"
+    href="#"
+  >
+    Sign Up
+  </a>
+</div>
+`;

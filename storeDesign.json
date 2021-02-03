@@ -1,0 +1,37 @@
+{
+  "cards": [
+    {
+      "id": 1,
+      "name": "Dark Magician Girl",
+      "level": 6,
+      "imgurl": "https://static.wikia.nocookie.net/yugioh/images/d/dc/DarkMagicianGirl-LED6-EN-C-1E.png/revision/latest/scale-to-width-down/300?cb=20200118174554",
+      "atk": 2000,
+      "def": 1700,
+      "cardType": "Monster",
+      "frame": "Effect",
+      "attribute": "Dark",
+      "type": "Spellcaster",
+      "status": "Unlimited",
+      "description": "Gains 300 ATK for every 'Dark Magician' or 'Magician of Black Chaos' in the GY.",
+      "archetypes": ["Dark Magician", "Dark Magician Girl", "Magician Girl"]
+    },
+    {},
+    {}
+  ],
+  "decks": [
+    {
+      "id": 1,
+      "name": "Dark Magicians",
+      "owner": 1,
+      "cards": [{ "cardId": 1 }, { "cardId": 2 }]
+    },
+    {},
+    {}
+  ],
+  "currentUser": {
+    "id": 1,
+    "name": "Toci",
+    "userName": "tocirml",
+    "role": "admin"
+  }
+}

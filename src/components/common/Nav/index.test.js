@@ -1,10 +1,10 @@
 import React from 'react';
 import { Nav } from './index';
 import { NavLink, MemoryRouter } from 'react-router-dom';
-// import { createMemoryHistory } from 'history';
 
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
+
 import { shallow } from 'enzyme';
 
 const links = {
@@ -40,50 +40,44 @@ describe('rendering', () => {
   });
 });
 
-describe('correct links', () => {
-  it('Home has correct href', () => {
-    const { getByText } = render(
+describe('mobile', () => {
+  it('has mobile class if passed', () => {
+    render(
       <MemoryRouter>
-        <Nav />
+        <Nav mobile={true} />
       </MemoryRouter>
     );
-    expect(getByText(links.HomeLinkText)).toHaveAttribute('href', '/');
+
+    expect(screen.getByTestId('navbar')).toHaveClass('mobile');
+  });
+});
+
+describe('correct links', () => {
+  const { getByText } = render(
+    <MemoryRouter>
+      <Nav />
+    </MemoryRouter>
+  );
+
+  const homeLink = getByText(links.HomeLinkText);
+  const cardListLink = getByText(links.CardListLinkText);
+  const deckBuilderLink = getByText(links.DeckBuilderLinkText);
+  const aboutLink = getByText(links.AboutLinkText);
+
+  it('Home has correct href', () => {
+    expect(homeLink).toHaveAttribute('href', '/');
   });
 
   it('Card List has correct href', () => {
-    const { getByText } = render(
-      <MemoryRouter>
-        <Nav />
-      </MemoryRouter>
-    );
-
-    expect(getByText(links.CardListLinkText)).toHaveAttribute(
-      'href',
-      '/card-list'
-    );
+    expect(cardListLink).toHaveAttribute('href', '/card-list');
   });
 
   it('Deck Builder has correct href', () => {
-    const { getByText } = render(
-      <MemoryRouter>
-        <Nav />
-      </MemoryRouter>
-    );
-
-    expect(getByText(links.DeckBuilderLinkText)).toHaveAttribute(
-      'href',
-      '/deck-builder'
-    );
+    expect(deckBuilderLink).toHaveAttribute('href', '/deck-builder');
   });
 
   it('About has correct href', () => {
-    const { getByText } = render(
-      <MemoryRouter>
-        <Nav />
-      </MemoryRouter>
-    );
-
-    expect(getByText(links.AboutLinkText)).toHaveAttribute('href', '/about');
+    expect(aboutLink).toHaveAttribute('href', '/about');
   });
 });
 

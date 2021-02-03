@@ -1,3 +1,5 @@
 import React from 'react';
 
-export const AboutPage = () => 'About';
+export const AboutPage = () => {
+  return <main>About Page</main>;
+};

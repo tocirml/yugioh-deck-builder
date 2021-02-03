@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshots Anvorgesa snapshot 1`] = `
+<a
+  className="anvorgesa"
+  data-testid="anvorgesa"
+  href="#"
+  onClick={[Function]}
+>
+  <span
+    className="bar"
+  />
+  <span
+    className="bar"
+  />
+  <span
+    className="bar"
+  />
+</a>
+`;

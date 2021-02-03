@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshots Header snapshot 1`] = `
+<header
+  className="header"
+>
+  <NavLink
+    to="/"
+  >
+    <div
+      className="logo"
+    >
+      <img
+        alt="yugioh logo"
+        src="test-file-stub"
+      />
+      <div
+        className="logo-text"
+      >
+        DECK BUILDER
+      </div>
+    </div>
+  </NavLink>
+  <Nav
+    mobile={false}
+  />
+  <Login
+    mobile={false}
+  />
+  <Anvorgesa
+    toggleHandler={[Function]}
+  />
+</header>
+`;

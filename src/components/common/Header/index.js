@@ -7,7 +7,7 @@ import './style.scss';
 import logo from '../../../assets/logo.png';
 
 export const Header = () => {
-  const [showMobileMenu, setShowMobileMenu] = useState(0);
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
 
   const toggleMobileMenu = () => {
     setShowMobileMenu(!showMobileMenu);

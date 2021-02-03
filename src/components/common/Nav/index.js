@@ -1,10 +1,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './style.scss';
+import PropTypes from 'prop-types';
 
 export const Nav = ({ mobile }) => {
   return (
-    <nav className={`navbar ${mobile ? 'mobile' : ''}`}>
+    <nav data-testid="navbar" className={`navbar ${mobile ? 'mobile' : ''}`}>
       <ul className="navbar-list">
         <li className="navbar-list-link">
           <NavLink to="/">{`Home`}</NavLink>
@@ -21,4 +22,8 @@ export const Nav = ({ mobile }) => {
       </ul>
     </nav>
   );
+};
+
+Nav.propTypes = {
+  mobile: PropTypes.bool.isRequired,
 };
