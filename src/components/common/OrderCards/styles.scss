@@ -1,0 +1,46 @@
+.order-cards {
+  display: inline-block;
+  position: relative;
+  margin: 10px 20px;
+  &-button {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 7px 10px;
+    cursor: pointer;
+  }
+  &-button:hover {
+    background-color: #333;
+  }
+  &-button:focus {
+    outline: none;
+    background-color: black;
+  }
+  &-button:focus + ul {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  &-by {
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease;
+    transform: translateY(10px);
+    background-color: black;
+    position: absolute;
+    width: 100px;
+    right: 0;
+    cursor: pointer;
+    li {
+      margin: 5px;
+      list-style: none;
+    }
+    li:hover {
+      background-color: #333;
+    }
+
+    li.active {
+      background-color: #333;
+    }
+  }
+}

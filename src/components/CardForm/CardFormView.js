@@ -1,6 +1,6 @@
 import React from 'react';
 import './style.scss';
-import SelectInput from '../common/SelectInput';
+// import SelectInput from '../common/SelectInput';
 import TextInput from '../common/TextInput';
 import PropTypes from 'prop-types';
 
@@ -26,7 +26,6 @@ export const CardFormView = ({
         onChange={onChange}
         error={errors.title}
       />
-      <SelectInput />
       <input
         type="submit"
         disabled={saving}

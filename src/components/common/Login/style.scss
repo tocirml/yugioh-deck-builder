@@ -61,6 +61,7 @@
   }
 
   .login.mobile {
+    z-index: 1000;
     transform: translateX(0%);
     transition: transform 0.4s ease-in;
   }

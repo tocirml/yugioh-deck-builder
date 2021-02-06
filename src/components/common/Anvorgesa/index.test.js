@@ -7,13 +7,22 @@ import userEvent from '@testing-library/user-event';
 
 import { shallow } from 'enzyme';
 
+function renderAnvorgesa(args) {
+  const defaultProps = {
+    toggleHandler: () => {},
+  };
+
+  const props = { ...defaultProps, ...args };
+  return shallow(<Anvorgesa {...props} />);
+}
+
 describe('rendering', () => {
   it('renders without crashing', () => {
-    shallow(<Anvorgesa />);
+    renderAnvorgesa();
   });
 
   it('renders 3 bars', () => {
-    const wrapper = shallow(<Anvorgesa />);
+    const wrapper = renderAnvorgesa();
     expect(wrapper.find('span').length).toEqual(3);
   });
 });
@@ -31,7 +40,7 @@ describe('toggle', () => {
 
 describe('snapshots', () => {
   it('Anvorgesa snapshot', () => {
-    const tree = shallow(<Anvorgesa />);
+    const tree = renderAnvorgesa();
     expect(tree).toMatchSnapshot();
   });
 });

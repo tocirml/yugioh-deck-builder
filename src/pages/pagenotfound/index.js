@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles.scss';
-import notFoundImage from '../../assets/not-found-404.png';
+import notFoundImage from '../../assets/not-found-404.jpg';
 
 export const PageNotFound = () => {
   return (

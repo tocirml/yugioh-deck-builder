@@ -1,4 +1,30 @@
-a {
-  color: white;
-  text-decoration: none;
+.card {
+  &-list {
+    &-view {
+      margin: 10px 10px;
+    }
+    &-database {
+      margin: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      a {
+        color: white;
+        text-decoration: none;
+      }
+    }
+
+    &-options {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+
+  &-view {
+    width: 136px;
+    height: 200px;
+    margin: 2px;
+    border: solid 5px white;
+  }
 }

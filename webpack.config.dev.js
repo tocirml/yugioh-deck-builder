@@ -10,7 +10,7 @@ module.exports = {
   devtool: 'cheap-module-source-map', //    let us see original code in browser for debugging
   entry: './src/index.js',
   output: {
-    path: path.resolve(__dirname, 'dist'), // __dirname is a variable available, means current folder, absolute path
+    path: path.resolve(__dirname, 'build'), // __dirname is a variable available, means current folder, absolute path
     publicPath: '/',
     filename: 'bundle.js',
   },
@@ -44,7 +44,6 @@ module.exports = {
       'process.env.API_URL': JSON.stringify('http://localhost:3001'),
     }),
     new HtmlWebpackPlugin({
-      hash: true,
       filename: 'index.html', //target html
       template: './public/index.html', //source html
     }),

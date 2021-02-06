@@ -3,26 +3,31 @@ const cards = [
     id: 1,
     name: 'Dark Magician Girl',
     slug: 'dark-magician-girl',
+    level: 5,
   },
   {
     id: 2,
     name: 'Dark Magician Girl the Dragon Knight',
     slug: 'dark-magician-girl-the-dragon-knight',
+    level: 6,
   },
   {
     id: 3,
     name: 'Dark Magician',
     slug: 'dark-magician',
+    level: 10,
   },
   {
     id: 4,
     name: 'Dark Paladin',
     slug: 'dark-paladin',
+    level: 3,
   },
   {
     id: 5,
     name: 'Magician of Chaos',
     slug: 'magician-of-chaos',
+    level: 4,
   },
 ];
 

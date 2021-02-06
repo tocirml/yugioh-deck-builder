@@ -16,18 +16,18 @@ const links = {
 
 describe('rendering', () => {
   it('renders without crashing', () => {
-    shallow(<Nav />);
+    shallow(<Nav mobile={false} />);
   });
 
   it('renders 4 NavLink', () => {
-    const wrapper = shallow(<Nav />);
+    const wrapper = shallow(<Nav mobile={false} />);
     expect(wrapper.find(NavLink).length).toEqual(4);
   });
 
   it('renders links text correctly', () => {
     render(
       <MemoryRouter>
-        <Nav />
+        <Nav mobile={false} />
       </MemoryRouter>
     );
 
@@ -55,7 +55,7 @@ describe('mobile', () => {
 describe('correct links', () => {
   const { getByText } = render(
     <MemoryRouter>
-      <Nav />
+      <Nav mobile={false} />
     </MemoryRouter>
   );
 
@@ -83,7 +83,7 @@ describe('correct links', () => {
 
 describe('snapshots', () => {
   it('Nav snapshot', () => {
-    const tree = shallow(<Nav />);
+    const tree = shallow(<Nav mobile={false} />);
     expect(tree).toMatchSnapshot();
   });
 });

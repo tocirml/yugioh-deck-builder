@@ -55,6 +55,7 @@ const CardForm = ({
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    // CAPITALIZE name
     if (formIsValid()) {
       setSaving(true);
       saveCard(card)

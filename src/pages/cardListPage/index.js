@@ -5,12 +5,10 @@ import './style.scss';
 
 export const CardListPage = () => {
   return (
-    <div className="card-list">
-      CARD LIST
-      <Link to="/card" className="card-list-add">
-        Add a Card +
-      </Link>
+    <main className="card-list">
+      <h1 className="card-list-title">CARD DATABASE</h1>
+      <Link className="card-list-add" to="/card">{`Add a Card +`}</Link>
       <CardList />
-    </div>
+    </main>
   );
 };

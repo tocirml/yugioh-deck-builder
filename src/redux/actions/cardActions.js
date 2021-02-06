@@ -23,42 +23,54 @@ export const deleteCardOptimistic = (card) => ({
   },
 });
 
-export const loadCardsSuccess = (cards) => ({
+export const loadCardsSuccess = (cards, orderBy) => ({
   type: actions.LOAD_CARDS_SUCCESS,
   payload: {
     cards,
   },
+  orderBy,
 });
 
 //thunks
 
-export const loadCards = () => (dispatch) => {
+export const loadCards = (orderBy = 'name') => async (dispatch) => {
   dispatch(beginApiCall());
-  return cardApi
-    .getCards()
-    .then((cards) => {
-      dispatch(loadCardsSuccess(cards));
-    })
-    .catch((error) => {
-      dispatch(apiCallError(error));
-      throw error;
-    });
+  try {
+    const cards = await cardApi.getCards();
+    return dispatch(loadCardsSuccess(cards, orderBy));
+  } catch (error) {
+    dispatch(apiCallError(error));
+    throw error;
+  }
 };
 
-export const saveCard = (card) => (dispatch) => {
+export const saveCard = (card) => async (dispatch) => {
   dispatch(beginApiCall());
-  return cardApi
-    .saveCard(card)
-    .then((savedCard) => {
-      card.id
-        ? dispatch(updateCardSuccess(savedCard))
-        : dispatch(saveCardSuccess(savedCard));
-    })
-    .catch((error) => {
-      dispatch(apiCallError(error));
-      throw error;
-    });
+  try {
+    const savedCard = await cardApi.saveCard(card);
+    return card.id
+      ? dispatch(updateCardSuccess(savedCard))
+      : dispatch(saveCardSuccess(savedCard));
+  } catch (error) {
+    dispatch(apiCallError(error));
+    throw error;
+  }
 };
+
+// export const saveCard = (card) => (dispatch) => {
+//   dispatch(beginApiCall());
+//   return cardApi
+//     .saveCard(card)
+//     .then((savedCard) => {
+//       card.id
+//         ? dispatch(updateCardSuccess(savedCard))
+//         : dispatch(saveCardSuccess(savedCard));
+//     })
+//     .catch((error) => {
+//       dispatch(apiCallError(error));
+//       throw error;
+//     });
+// };
 
 export const deleteCard = (card) => (dispatch) => {
   dispatch(deleteCardOptimistic(card));

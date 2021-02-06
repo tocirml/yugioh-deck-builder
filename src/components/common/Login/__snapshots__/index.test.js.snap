@@ -6,16 +6,16 @@ exports[`snapshots Anvorgesa snapshot 1`] = `
   data-testid="login"
 >
   <a
-    className="log-in"
+    className="login-button"
     href="#"
   >
     Login
   </a>
   <a
-    className="sign-up"
+    className="register-button"
     href="#"
   >
-    Sign Up
+    Register
   </a>
 </div>
 `;

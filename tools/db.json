@@ -1,1 +1,46 @@
-{"cards":[{"id":1,"name":"Dark Magician Girl","slug":"dark-magician-girl"},{"id":2,"name":"Dark Magician Girl the Dragon Knight","slug":"dark-magician-girl-the-dragon-knight"},{"id":3,"name":"Dark Magician","slug":"dark-magician"},{"id":4,"name":"Dark Paladin","slug":"dark-paladin"},{"id":5,"name":"Magician of Chaos","slug":"magician-of-chaos"}]}
+{
+  "cards": [
+    {
+      "id": 1,
+      "name": "Dark Magician Girl",
+      "slug": "dark-magician-girl",
+      "level": 5
+    },
+    {
+      "id": 2,
+      "name": "Dark Magician Girl the Dragon Knight",
+      "slug": "dark-magician-girl-the-dragon-knight",
+      "level": 6
+    },
+    {
+      "id": 3,
+      "name": "Dark Magician",
+      "slug": "dark-magician",
+      "level": 10
+    },
+    {
+      "id": 4,
+      "name": "Dark Paladin",
+      "slug": "dark-paladin",
+      "level": 3
+    },
+    {
+      "id": 5,
+      "name": "Magician of Chaos",
+      "slug": "magician-of-chaos",
+      "level": 4
+    },
+    {
+      "id": 6,
+      "name": "Perro",
+      "createdAt": 1612560821869,
+      "slug": "perro"
+    },
+    {
+      "id": 7,
+      "name": "Ateam",
+      "createdAt": 1612560845508,
+      "slug": "ateam"
+    }
+  ]
+}
