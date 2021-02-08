@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { CardListView } from './CardListView';
 import { connect } from 'react-redux';
-import { loadCards } from '../../redux/actions/cardActions'; // import for mapDispatchToProps
+import { loadCards, orderCards } from '../../redux/actions/cardActions';
 import { toast } from 'react-toastify';
-
 import Spinner from '../common/Spinner';
 import PropTypes from 'prop-types';
 
@@ -11,9 +10,14 @@ const orders = {
   byName: 'byName',
   byLevel: 'byLevel',
   byFrame: 'byFrame',
+  byAttribute: 'byAttribute',
+  byAtk: 'byAtk',
+  byDef: 'byDef',
+  byCardType: 'byCardType',
+  byType: 'byType',
 };
 
-const CardList = ({ cards, loadCards, loading }) => {
+const CardList = ({ cards, loadCards, orderCards, loading }) => {
   const [order, setOrder] = useState('byName');
 
   useEffect(() => {
@@ -25,20 +29,32 @@ const CardList = ({ cards, loadCards, loading }) => {
   }, []);
 
   const handleOrderChange = (newOrder) => {
+    // let cardsCopy = [...cards];
+    // let monsters = cardsCopy.filter((card) => {
+    //   card.cardType === 1
+    // })
     if (order !== newOrder) {
       switch (newOrder) {
         case orders.byName:
-          loadCards('name').catch((error) => {
-            toast.error(`Sorting Cards Failed: ${error.message}`);
-          });
-          break;
-        case orders.byLevel:
-          loadCards('level').catch((error) => {
-            toast.error(`Sorting Cards Failed: ${error.message}`);
-          });
+          orderCards('name');
           break;
         case orders.byFrame:
-          console.log(newOrder);
+          orderCards('cardFrame');
+          break;
+        case orders.byLevel:
+          orderCards('level');
+          break;
+        case orders.byAttribute:
+          orderCards('attribute');
+          break;
+        case orders.byAtk:
+          orderCards('atk');
+          break;
+        case orders.byDef:
+          orderCards('def');
+          break;
+        case orders.byType:
+          orderCards('type');
           break;
         default:
           console.log('default');
@@ -62,6 +78,7 @@ const CardList = ({ cards, loadCards, loading }) => {
 
 CardList.propTypes = {
   loadCards: PropTypes.func.isRequired,
+  orderCards: PropTypes.func.isRequired,
   cards: PropTypes.array.isRequired,
   loading: PropTypes.bool.isRequired,
 };
@@ -75,6 +92,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   loadCards,
+  orderCards,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardList);

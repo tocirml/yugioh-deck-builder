@@ -14,16 +14,40 @@ const OrderCards = ({ order, onOrderChange }) => {
           Name
         </li>
         <li
+          onClick={() => onOrderChange('byFrame')}
+          className={order === 'byFrame' ? 'active' : ''}
+        >
+          Card Color
+        </li>
+        <li
           onClick={() => onOrderChange('byLevel')}
           className={order === 'byLevel' ? 'active' : ''}
         >
           Level
         </li>
         <li
-          onClick={() => onOrderChange('byFrame')}
-          className={order === 'byFrame' ? 'active' : ''}
+          onClick={() => onOrderChange('byAtk')}
+          className={order === 'byAtk' ? 'active' : ''}
         >
-          Frame
+          ATK
+        </li>
+        <li
+          onClick={() => onOrderChange('byDef')}
+          className={order === 'byDef' ? 'active' : ''}
+        >
+          DEF
+        </li>
+        <li
+          onClick={() => onOrderChange('byAttribute')}
+          className={order === 'byAttribute' ? 'active' : ''}
+        >
+          Attribute
+        </li>
+        <li
+          onClick={() => onOrderChange('byType')}
+          className={order === 'byType' ? 'active' : ''}
+        >
+          Type
         </li>
       </ul>
     </div>

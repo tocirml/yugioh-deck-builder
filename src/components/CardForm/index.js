@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { CardFormView } from './CardFormView';
 import { connect } from 'react-redux';
+import { loadCardFrames } from '../../redux/actions/cardFrameActions';
+import { newCard } from '../../../tools/mockData';
 // import { bindActionCreators } from 'redux';
 import {
   saveCard,
@@ -11,14 +13,14 @@ import PropTypes from 'prop-types';
 import Spinner from '../common/Spinner';
 import { toast } from 'react-toastify';
 
-const newCard = { id: null, name: '' };
-
 const CardForm = ({
   saveCard,
   loadCards,
   deleteCard,
   cards,
   routeProps,
+  cardFrames,
+  loadCardFrames,
   ...props
 }) => {
   const [card, setCard] = useState({ ...props.card });
@@ -32,6 +34,11 @@ const CardForm = ({
       });
     } else {
       setCard({ ...props.card });
+    }
+    if (cardFrames.length === 0) {
+      loadCardFrames().catch((error) => {
+        toast.error(`Loading Cards Frames Failed: ${error.message}`);
+      });
     }
   }, [props.card]);
 
@@ -103,6 +110,8 @@ CardForm.propTypes = {
   card: PropTypes.object.isRequired,
   cards: PropTypes.array.isRequired,
   routeProps: PropTypes.object.isRequired,
+  cardFrames: PropTypes.array.isRequired,
+  loadCardFrames: PropTypes.func.isRequired,
 };
 
 const getCardBySlug = (cards, slug) => {
@@ -115,6 +124,7 @@ const mapStateToProps = (state, ownProps) => {
     slug && state.cards.length > 0 ? getCardBySlug(state.cards, slug) : newCard;
   return {
     card,
+    cardFrames: state.cardFrames,
     cards: state.cards,
   };
 };
@@ -128,6 +138,7 @@ const mapDispatchToProps = {
   saveCard,
   loadCards,
   deleteCard,
+  loadCardFrames,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardForm);

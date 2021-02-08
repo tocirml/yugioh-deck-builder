@@ -23,21 +23,25 @@ export const deleteCardOptimistic = (card) => ({
   },
 });
 
-export const loadCardsSuccess = (cards, orderBy) => ({
+export const loadCardsSuccess = (cards) => ({
   type: actions.LOAD_CARDS_SUCCESS,
   payload: {
     cards,
   },
+});
+
+export const orderCards = (orderBy) => ({
+  type: actions.ORDER_CARDS,
   orderBy,
 });
 
 //thunks
 
-export const loadCards = (orderBy = 'name') => async (dispatch) => {
+export const loadCards = () => async (dispatch) => {
   dispatch(beginApiCall());
   try {
     const cards = await cardApi.getCards();
-    return dispatch(loadCardsSuccess(cards, orderBy));
+    return dispatch(loadCardsSuccess(cards));
   } catch (error) {
     dispatch(apiCallError(error));
     throw error;

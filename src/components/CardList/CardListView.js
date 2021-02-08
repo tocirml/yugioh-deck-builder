@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.scss';
-import { Link } from 'react-router-dom';
 import OrderCards from '../common/OrderCards';
+import CardView from '../CardView';
 import PropTypes from 'prop-types';
 
 export const CardListView = ({ cards, order, onOrderChange }) => (
@@ -11,11 +11,7 @@ export const CardListView = ({ cards, order, onOrderChange }) => (
     </div>
     <div className="card-list-database">
       {cards.map((card) => (
-        <div className="card-view" key={card.id}>
-          <Link to={`/card/${card.slug}`}>{card.name}</Link>
-          <br />
-          Level: {card.level}
-        </div>
+        <CardView key={card.id} card={card} />
       ))}
     </div>
   </div>

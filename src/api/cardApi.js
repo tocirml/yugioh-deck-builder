@@ -4,8 +4,7 @@ const baseUrl = process.env.API_URL + '/cards/';
 export const getCards = async () => {
   try {
     const response = await fetch(baseUrl);
-    const cards = await handleResponse(response);
-    return cards;
+    return await handleResponse(response);
   } catch (error) {
     handleError(error);
   }
@@ -18,8 +17,7 @@ export const saveCard = async (card) => {
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify(card),
     });
-    const savedCard = await handleResponse(response);
-    return savedCard;
+    return await handleResponse(response);
   } catch (error) {
     handleError(error);
   }
