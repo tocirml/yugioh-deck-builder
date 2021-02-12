@@ -45,7 +45,7 @@ const cards = [
     description: 'The ultimate wizard in terms of attack and defense.',
     atk: 2500,
     def: 2100,
-    imgUrl: 'https://ygoprodeck.com/pics/46986414.jpg',
+    imgUrl: 'https://ygoprodeck.com/pics/46986419.jpg',
     cardType: 1,
     status: 3,
   },
@@ -62,7 +62,7 @@ const cards = [
       '"Dark Magician" + "Buster Blader". Must be Fusion Summoned. When a Spell Card is activated (Quick Effect): You can discard 1 card; negate the activation, and if you do, destroy it. This card must be face-up on the field to activate and to resolve this effect. Gains 500 ATK for each Dragon monster on the field and in the GY.',
     atk: 2900,
     def: 2400,
-    imgUrl: 'https://ygoprodeck.com/pics/98502113.jpg',
+    imgUrl: 'https://ygoprodeck.com/pics/98502115.jpg',
     cardType: 1,
     status: 3,
   },
@@ -144,7 +144,7 @@ const cards = [
     type: 'Spellcaster',
     archetypes: ['Dark Magician'],
     description:
-      'Cannot be Normal Summoned/Set. Must be Special Summoned (from your hand) by Tributing 1 Spellcaster-Type monster, and cannot be Special Summoned by other ways. This card gains 500 ATK for each card in your hand. Once per turn, during either player&#39;s turn, when a Spell Card is activated: You can negate the activation. If this card is destroyed by battle, or if this card in its owner&#39;s control is destroyed by an opponent&#39;s card effect: You can Special Summon 1 "Silent Magician" monster from your hand or Deck, except "Silent Magician", ignoring its Summoning conditions.',
+      'Cannot be Normal Summoned/Set. Must be Special Summoned (from your hand) by Tributing 1 Spellcaster-Type monster, and cannot be Special Summoned by other ways. This card gains 500 ATK for each card in your hand. Once per turn, during either player\'s turn, when a Spell Card is activated: You can negate the activation. If this card is destroyed by battle, or if this card in its owner\'s control is destroyed by an opponent\'s card effect: You can Special Summon 1 "Silent Magician" monster from your hand or Deck, except "Silent Magician", ignoring its Summoning conditions.',
     atk: 1000,
     def: 1000,
     imgUrl: 'https://ygoprodeck.com/pics/41175645.jpg',
@@ -195,7 +195,7 @@ const cards = [
     type: 'Spellcaster',
     archetypes: ['Dark Magician'],
     description:
-      'You can Special Summon this card (from your hand) by discarding 1 card. If this card is Normal or Special Summoned: You can add 1 "Dark Magician" from your Deck to your hand. During damage calculation, if your other DARK Spellcaster monster battles an opponent&#39;s monster (Quick Effect): You can send this card from your hand or face-up field to the GY; that monster you control gains 2000 ATK/DEF during that damage calculation only.',
+      'You can Special Summon this card (from your hand) by discarding 1 card. If this card is Normal or Special Summoned: You can add 1 "Dark Magician" from your Deck to your hand. During damage calculation, if your other DARK Spellcaster monster battles an opponent\'s monster (Quick Effect): You can send this card from your hand or face-up field to the GY; that monster you control gains 2000 ATK/DEF during that damage calculation only.',
     atk: 2000,
     def: 1700,
     imgUrl: 'https://ygoprodeck.com/pics/30603688.jpg',
@@ -208,7 +208,7 @@ const cards = [
     slug: 'bond-between-teacher-and-student',
     attribute: '',
     cardFrame: 9,
-    level: 100,
+    level: 0,
     type: '',
     archetypes: ['Dark Magician'],
     description:
@@ -225,7 +225,7 @@ const cards = [
     slug: 'dark-burning-magic',
     attribute: '',
     cardFrame: 9,
-    level: 100,
+    level: 0,
     type: '',
     archetypes: ['Dark Magician'],
     description:
@@ -246,7 +246,7 @@ const cards = [
     type: 'Spellcaster',
     archetypes: ['Dark Magician'],
     description:
-      'During the End Phase, if this card was Normal or Special Summoned this turn: You can target 1 Spell in your GY; add it to your hand. You can only use this effect of "Dark Magician of Chaos" once per turn. If this card destroys an opponent&#39;s monster by battle, after damage calculation: Banish that opponent&#39;s monster. If this face-up card would leave the field, banish it instead.',
+      'During the End Phase, if this card was Normal or Special Summoned this turn: You can target 1 Spell in your GY; add it to your hand. You can only use this effect of "Dark Magician of Chaos" once per turn. If this card destroys an opponent\'s monster by battle, after damage calculation: Banish that opponent\'s monster. If this face-up card would leave the field, banish it instead.',
     atk: 2800,
     def: 2600,
     imgUrl: 'https://ygoprodeck.com/pics/40737112.jpg',
@@ -259,7 +259,7 @@ const cards = [
     slug: 'magician-navigation',
     attribute: null,
     cardFrame: 10,
-    level: 200,
+    level: 0,
     type: '',
     archetypes: ['Dark Magician'],
     description:
@@ -292,7 +292,7 @@ const cards = [
     slug: 'magicians-combination',
     attribute: '',
     cardFrame: 10,
-    level: 200,
+    level: 0,
     type: '',
     archetypes: ['Dark Magician'],
     description:
@@ -360,7 +360,7 @@ const cards = [
     slug: 'the-eye-of-timaeus',
     attribute: '',
     cardFrame: 9,
-    level: 100,
+    level: 0,
     type: '',
     archetypes: ['Dark Magician'],
     description:
@@ -415,7 +415,7 @@ const cards = [
     type: 'Spellcaster',
     archetypes: ['Dark Magician'],
     description:
-      '2 Level 6 Spellcaster-Type monsters. Once per turn: You can detach 1 Xyz Material from this card and banish 1 card from your hand, then activate 1 of these effects. ● Target 1 monster your opponent controls; take control of it until the End Phase. ● Target 1 monster in your opponent&#39;s Graveyard; Special Summon it to your field.',
+      "2 Level 6 Spellcaster-Type monsters. Once per turn: You can detach 1 Xyz Material from this card and banish 1 card from your hand, then activate 1 of these effects. ● Target 1 monster your opponent controls; take control of it until the End Phase. ● Target 1 monster in your opponent's Graveyard; Special Summon it to your field.",
     atk: 2400,
     def: 2000,
     imgUrl: 'https://ygoprodeck.com/pics/10000030.jpg',
@@ -439,13 +439,46 @@ const cards = [
     cardType: 1,
     status: 3,
   },
+  {
+    id: 27,
+    name: 'Gagaga Girl',
+    slug: 'gagaga-girl',
+    attribute: 'Dark',
+    cardFrame: 2,
+    level: 3,
+    type: 'Spellcaster',
+    archetypes: ['Gagaga'],
+    description:
+      'You can target 1 "Gagaga Magician" you control; this card\'s Level becomes the Level of that monster. An Xyz Monster that was Summoned using only this card and other "Gagaga" monsters as Xyz Material gains this effect. ● When it is Xyz Summoned: You can target 1 Special Summoned monster your opponent controls; its ATK becomes 0.',
+    atk: 1000,
+    def: 800,
+    imgUrl: 'https://ygoprodeck.com/pics/3606728.jpg',
+    cardType: 1,
+    status: 3,
+  },
+  {
+    id: 28,
+    name: 'Harpie Conductor',
+    attribute: 'Wind',
+    cardFrame: 8,
+    level: 0,
+    type: 'Winged Beast',
+    archetypes: ['Harpie'],
+    description:
+      '2 WIND monsters. This card\'s name becomes "Harpie Lady" while on the field or in the GY. You can only use each of the following effects of "Harpie Conductor" once per turn. ● If a "Harpie" monster(s) you control would be destroyed by battle or card effect, you can destroy 1 Spell/Trap you control instead. ● If another face-up "Harpie" monster you control returns to your hand (except during the Damage Step): You can target 1 Special Summoned monster your opponent controls; return it to the hand.',
+    atk: 1900,
+    def: null,
+    imgUrl: 'https://ygoprodeck.com/pics/85696777.jpg',
+    cardType: 1,
+    status: 3,
+  },
 ];
 
 const newCard = {
   id: null,
   name: '',
   attribute: '',
-  cardFrame: null,
+  cardFrame: 0,
   level: 0,
   type: '',
   archetypes: [],
@@ -453,9 +486,36 @@ const newCard = {
   atk: null,
   def: null,
   imgUrl: '',
-  cardType: null,
+  cardType: 0,
   status: 3,
 };
+
+const monsterTypes = [
+  'Aqua',
+  'Beast',
+  'Beast Warrior',
+  'Cyberse',
+  'Dinosaur',
+  'Divine Beast',
+  'Dragon',
+  'Fairy',
+  'Fiend',
+  'Fish',
+  'Insect',
+  'Machine',
+  'Plant',
+  'Psychic',
+  'Pyro',
+  'Reptile',
+  'Rock',
+  'Sea Serpent',
+  'Spellcaster',
+  'Thunder',
+  'Warrior',
+  'Winged Beast',
+  'Wyrm',
+  'Zombie',
+];
 
 const cardFrames = [
   {
@@ -490,14 +550,6 @@ const cardFrames = [
     id: 8,
     frame: 'Link',
   },
-  {
-    id: 9,
-    frame: 'Spell',
-  },
-  {
-    id: 10,
-    frame: 'Trap',
-  },
 ];
 
 const cardTypes = [
@@ -519,6 +571,16 @@ const cardTypes = [
   },
 ];
 
+const attributes = [
+  'Dark',
+  'Light',
+  'Earth',
+  'Wind',
+  'Water',
+  'Fire',
+  'Divine',
+];
+
 const nullUser = {
   id: null,
   name: '',
@@ -533,4 +595,6 @@ module.exports = {
   nullUser,
   cardTypes,
   cardFrames,
+  attributes,
+  monsterTypes,
 };

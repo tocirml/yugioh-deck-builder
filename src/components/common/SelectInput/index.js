@@ -9,9 +9,10 @@ const SelectInput = ({
   value,
   error,
   options,
+  extraClass = '',
 }) => {
   return (
-    <div className="form-group">
+    <div className={`form-group ${extraClass}`}>
       <label htmlFor={name}>{label}</label>
       <div className="field">
         {/* Note, value is set here rather than on the option - docs: https://facebook.github.io/react/docs/forms.html */}
@@ -43,6 +44,7 @@ SelectInput.propTypes = {
   defaultOption: PropTypes.string,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   error: PropTypes.string,
+  extraClass: PropTypes.string,
   options: PropTypes.arrayOf(PropTypes.object),
 };
 

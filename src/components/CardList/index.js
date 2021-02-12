@@ -13,7 +13,6 @@ const orders = {
   byAttribute: 'byAttribute',
   byAtk: 'byAtk',
   byDef: 'byDef',
-  byCardType: 'byCardType',
   byType: 'byType',
 };
 
@@ -28,39 +27,64 @@ const CardList = ({ cards, loadCards, orderCards, loading }) => {
     }
   }, []);
 
-  const handleOrderChange = (newOrder) => {
-    // let cardsCopy = [...cards];
-    // let monsters = cardsCopy.filter((card) => {
-    //   card.cardType === 1
-    // })
-    if (order !== newOrder) {
-      switch (newOrder) {
-        case orders.byName:
-          orderCards('name');
-          break;
-        case orders.byFrame:
-          orderCards('cardFrame');
-          break;
-        case orders.byLevel:
-          orderCards('level');
-          break;
-        case orders.byAttribute:
-          orderCards('attribute');
-          break;
-        case orders.byAtk:
-          orderCards('atk');
-          break;
-        case orders.byDef:
-          orderCards('def');
-          break;
-        case orders.byType:
-          orderCards('type');
-          break;
-        default:
-          console.log('default');
-      }
-      setOrder(newOrder);
+  const cardsSplit = (cards, filter) => {
+    let monsters = [],
+      nonMonsters = [];
+    cards.forEach((card) => (filter(card) ? monsters : nonMonsters).push(card));
+    return [monsters, nonMonsters];
+  };
+
+  const orderCardsBy = (orderBy) => {
+    if (orderBy === 'name' || orderBy === 'cardFrame') {
+      return [...cards].sort((a, b) =>
+        a[orderBy] > b[orderBy] ? 1 : b[orderBy] > a[orderBy] ? -1 : 0
+      );
+    } else {
+      const [monsters, nonMonsters] = cardsSplit(
+        cards,
+        (card) => card.cardType === 1
+      );
+
+      monsters.sort((a, b) => {
+        return a[orderBy] > b[orderBy] ? 1 : b[orderBy] > a[orderBy] ? -1 : 0;
+      });
+
+      nonMonsters.sort((a, b) =>
+        a.cardFrame > b.cardFrame ? 1 : b.cardFrame > a.cardFrame ? -1 : 0
+      );
+
+      return [...monsters, ...nonMonsters];
     }
+  };
+
+  const handleOrderChange = (newOrder) => {
+    // if (order === newOrder) return;
+    switch (newOrder) {
+      case orders.byName:
+        orderCards(orderCardsBy('name'));
+        break;
+      case orders.byFrame:
+        orderCards(orderCardsBy('cardFrame'));
+        break;
+      case orders.byLevel:
+        orderCards(orderCardsBy('level'));
+        break;
+      case orders.byAttribute:
+        orderCards(orderCardsBy('attribute'));
+        break;
+      case orders.byAtk:
+        orderCards(orderCardsBy('atk'));
+        break;
+      case orders.byDef:
+        orderCards(orderCardsBy('def'));
+        break;
+      case orders.byType:
+        orderCards(orderCardsBy('type'));
+        break;
+      default:
+        console.log('default');
+    }
+    setOrder(newOrder);
   };
 
   return loading ? (

@@ -28,12 +28,12 @@
     transform: translateY(10px);
     background-color: black;
     position: absolute;
-    width: 100px;
+    width: 200px;
     right: 0;
     cursor: pointer;
     z-index: 5;
     li {
-      margin: 5px;
+      padding: 8px;
       list-style: none;
     }
     li:hover {

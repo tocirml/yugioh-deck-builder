@@ -30,9 +30,11 @@ export const loadCardsSuccess = (cards) => ({
   },
 });
 
-export const orderCards = (orderBy) => ({
+export const orderCards = (cards) => ({
   type: actions.ORDER_CARDS,
-  orderBy,
+  payload: {
+    cards,
+  },
 });
 
 //thunks

@@ -1,10 +1,7 @@
 import actionTypes from '../actions/actionTypes';
 import initialState from './initialState';
 
-const cardReducer = (
-  state = initialState.cards,
-  { type, payload, orderBy }
-) => {
+const cardReducer = (state = initialState.cards, { type, payload }) => {
   switch (type) {
     case actionTypes.CREATE_CARD_SUCCESS:
       return [...state, { ...payload.card }];
@@ -17,9 +14,10 @@ const cardReducer = (
         a.name > b.name ? 1 : b.name > a.name ? -1 : 0
       );
     case actionTypes.ORDER_CARDS:
-      return [...state].sort((a, b) =>
-        a[orderBy] > b[orderBy] ? 1 : b[orderBy] > a[orderBy] ? -1 : 0
-      );
+      // return [...state].sort((a, b) =>
+      //   a[orderBy] > b[orderBy] ? 1 : b[orderBy] > a[orderBy] ? -1 : 0
+      // );
+      return payload.cards;
     case actionTypes.DELETE_CARD_OPTIMISTIC:
       return state.filter((card) => card.id !== payload.card.id);
     default:

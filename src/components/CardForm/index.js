@@ -53,28 +53,29 @@ const CardForm = ({
     return Object.keys(errors).length === 0;
   }
 
-  const handleChange = ({ target }) => {
+  const handleChange = (event) => {
+    const { name, value } = event.target;
     setCard({
       ...card,
-      [target.name]: target.value,
+      [name]: name.match(/cardFrame|cardType|level|atk|def|status/)
+        ? parseInt(value, 10)
+        : value,
     });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // CAPITALIZE name
-    if (formIsValid()) {
-      setSaving(true);
-      saveCard(card)
-        .then(() => {
-          toast.success('Card saved!');
-          routeProps.history.push('/card-list');
-        })
-        .catch((error) => {
-          setSaving(false);
-          setErrors({ onSave: error.message });
-        });
-    }
+    if (!formIsValid()) return;
+    setSaving(true);
+    saveCard(card)
+      .then(() => {
+        toast.success('Card saved!');
+        routeProps.history.push('/card-list');
+      })
+      .catch((error) => {
+        setSaving(false);
+        setErrors({ onSave: error.message });
+      });
   };
 
   const handleDelete = async () => {
@@ -94,6 +95,7 @@ const CardForm = ({
   ) : (
     <CardFormView
       card={card}
+      cardFrames={cardFrames}
       onChange={handleChange}
       onSubmit={handleSubmit}
       errors={errors}
