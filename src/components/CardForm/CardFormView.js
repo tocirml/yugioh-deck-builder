@@ -87,21 +87,23 @@ export const CardFormView = ({
               extraClass={'inline'}
             />
 
-            <SelectInput
-              name="level"
-              label="Level"
-              value={card.level || ''}
-              defaultOption=""
-              options={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map(
-                (level) => ({
-                  value: level,
-                  text: level,
-                })
-              )}
-              onChange={onChange}
-              error={errors.level}
-              extraClass={'inline'}
-            />
+            {card.cardFrame !== 8 && (
+              <SelectInput
+                name="level"
+                label="Level"
+                value={card.level || ''}
+                defaultOption=""
+                options={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map(
+                  (level) => ({
+                    value: level,
+                    text: level,
+                  })
+                )}
+                onChange={onChange}
+                error={errors.level}
+                extraClass={'inline'}
+              />
+            )}
 
             <SelectInput
               name="type"
@@ -125,15 +127,16 @@ export const CardFormView = ({
               error={errors.atk}
               extraClass={'inline'}
             />
-
-            <NumberInput
-              name="def"
-              label="Defense"
-              value={card.def}
-              onChange={onChange}
-              error={errors.def}
-              extraClass={'inline'}
-            />
+            {card.cardFrame !== 8 && (
+              <NumberInput
+                name="def"
+                label="Defense"
+                value={card.def}
+                onChange={onChange}
+                error={errors.def}
+                extraClass={'inline'}
+              />
+            )}
           </>
         )}
 
@@ -168,18 +171,22 @@ export const CardFormView = ({
         <input
           type="submit"
           disabled={saving}
-          value={saving ? 'Saving...' : 'Save'}
-          className=""
+          value={saving ? 'Saving...' : 'Submit'}
+          className="card-form-submit"
         />
 
         {card.id && (
-          <button onClick={onDelete} disabled={saving} className="">
+          <button
+            onClick={onDelete}
+            disabled={saving}
+            className="card-form-delete"
+          >
             {'Delete Card'}
           </button>
         )}
 
         <button disabled={saving} className="card-form-cancel">
-          <Link className="card-form-cancel" to="/card-list">
+          <Link className="card-form-cancel-link" to="/card-list">
             {'Go Back'}
           </Link>
         </button>

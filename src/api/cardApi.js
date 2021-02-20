@@ -1,10 +1,12 @@
 import { handleResponse, handleError } from './apiUtils';
 const baseUrl = process.env.API_URL + '/cards/';
 
-export const getCards = async () => {
+export const getCards = async (limit, offset) => {
   try {
-    const response = await fetch(baseUrl);
-    return await handleResponse(response);
+    const response = await fetch(`${baseUrl}?_start=${offset}&_limit=${limit}`);
+    const totalCount = response.headers.get('X-Total-Count');
+    const cards = await handleResponse(response);
+    return { cards, totalCount };
   } catch (error) {
     handleError(error);
   }

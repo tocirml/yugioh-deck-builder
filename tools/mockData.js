@@ -459,6 +459,7 @@ const cards = [
   {
     id: 28,
     name: 'Harpie Conductor',
+    slug: 'harpie-conductor',
     attribute: 'Wind',
     cardFrame: 8,
     level: 0,

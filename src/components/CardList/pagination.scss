@@ -1,0 +1,24 @@
+.pagination {
+  ul {
+    display: inline-block;
+  }
+  li {
+    display: inline-block;
+    cursor: pointer;
+    border: solid 1px white;
+    background-color: black;
+    font-weight: 600;
+
+    a {
+      padding: 10px 15px;
+    }
+
+    a:focus {
+      outline: none;
+    }
+  }
+  .active {
+    border: solid 2px white;
+    background-color: rgb(63, 61, 61);
+  }
+}

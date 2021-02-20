@@ -43,10 +43,14 @@ const CardForm = ({
   }, [props.card]);
 
   function formIsValid() {
-    const { name } = card;
+    const { name, description, status, cardType, imgUrl } = card;
     const errors = {};
 
-    if (!name) errors.title = 'Name is required.';
+    if (!name) errors.name = 'Name is required.';
+    if (!description) errors.description = 'Description is required.';
+    if (!status) errors.status = 'Status is required.';
+    if (!cardType) errors.cardType = 'Card Type is required.';
+    if (!imgUrl) errors.imgUrl = 'Image URL is required.';
 
     setErrors(errors);
     // Form is valid if the errors object still has no properties

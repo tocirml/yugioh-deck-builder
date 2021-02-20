@@ -3,8 +3,11 @@ import { CardListView } from './CardListView';
 import { connect } from 'react-redux';
 import { loadCards, orderCards } from '../../redux/actions/cardActions';
 import { toast } from 'react-toastify';
+import ReactPaginate from 'react-paginate';
 import Spinner from '../common/Spinner';
+import LimitPerPage from '../common/LimitPerPage';
 import PropTypes from 'prop-types';
+import './pagination.scss';
 
 const orders = {
   byName: 'byName',
@@ -18,14 +21,20 @@ const orders = {
 
 const CardList = ({ cards, loadCards, orderCards, loading }) => {
   const [order, setOrder] = useState('byName');
+  const [offset, setOffset] = useState(0);
+  const [pageCount, setPageCount] = useState(0);
+  const [perPage, setPerPage] = useState(10); // limit
+  const [initialPage, setInitialPage] = useState(0);
 
   useEffect(() => {
-    if (cards.length === 0) {
-      loadCards().catch((error) => {
+    loadCards(perPage, offset)
+      .then((totalCount) => {
+        setPageCount(Math.ceil(totalCount / perPage));
+      })
+      .catch((error) => {
         toast.error(`Loading Cards Failed: ${error.message}`);
       });
-    }
-  }, []);
+  }, [offset, perPage]);
 
   const cardsSplit = (cards, filter) => {
     let monsters = [],
@@ -58,7 +67,7 @@ const CardList = ({ cards, loadCards, orderCards, loading }) => {
   };
 
   const handleOrderChange = (newOrder) => {
-    // if (order === newOrder) return;
+    if (order === newOrder) return;
     switch (newOrder) {
       case orders.byName:
         orderCards(orderCardsBy('name'));
@@ -87,14 +96,42 @@ const CardList = ({ cards, loadCards, orderCards, loading }) => {
     setOrder(newOrder);
   };
 
+  const handlePageClick = (data) => {
+    let selected = data.selected;
+    let offset = Math.ceil(selected * perPage);
+    setInitialPage(selected);
+    setOffset(offset);
+  };
+
+  const limitChangeHandler = (limit) => {
+    setPerPage(limit);
+  };
+
   return loading ? (
     <Spinner />
+  ) : cards.length === 0 ? (
+    <div className="no-cards">CARD DATABASE IS EMPTY</div>
   ) : (
     <>
+      <LimitPerPage limit={perPage} onLimitChange={limitChangeHandler} />
       <CardListView
         cards={cards}
         order={order}
         onOrderChange={handleOrderChange}
+      />
+      <ReactPaginate
+        previousLabel={'<'}
+        nextLabel={'>'}
+        breakLabel={'...'}
+        breakClassName={'break-me'}
+        pageCount={pageCount}
+        initialPage={initialPage}
+        marginPagesDisplayed={2}
+        pageRangeDisplayed={5}
+        onPageChange={handlePageClick}
+        containerClassName={'pagination'}
+        subContainerClassName={'pages pagination'}
+        activeClassName={'active'}
       />
     </>
   );

@@ -1,7 +1,6 @@
 .card-view {
   position: relative;
   width: 136px;
-  height: 197px;
   margin: 2px;
   border: solid 1px black;
   overflow: hidden;
@@ -27,4 +26,10 @@
 .card-view:hover > div {
   transform: translateY(-33px);
   opacity: 0.85;
+}
+
+@media screen and (max-width: 530px) {
+  .card-view {
+    width: 90px;
+  }
 }

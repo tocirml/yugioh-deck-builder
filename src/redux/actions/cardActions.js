@@ -37,13 +37,14 @@ export const orderCards = (cards) => ({
   },
 });
 
-//thunks
+//thunks ---------------
 
-export const loadCards = () => async (dispatch) => {
+export const loadCards = (limit, offset) => async (dispatch) => {
   dispatch(beginApiCall());
   try {
-    const cards = await cardApi.getCards();
-    return dispatch(loadCardsSuccess(cards));
+    const { cards, totalCount } = await cardApi.getCards(limit, offset);
+    dispatch(loadCardsSuccess(cards));
+    return totalCount;
   } catch (error) {
     dispatch(apiCallError(error));
     throw error;

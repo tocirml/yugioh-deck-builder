@@ -41,8 +41,13 @@ server.use((req, res, next) => {
   next();
 });
 
+// server.get('/cards/', (req, res, next) => {
+//   res.status(200);
+//   next();
+// });
+
 server.post('/cards/', function (req, res, next) {
-  const error = validateCourse(req.body);
+  const error = validateCard(req.body);
   if (error) {
     res.status(400).send(error);
   } else {
@@ -70,9 +75,9 @@ function createSlug(value) {
     .toLowerCase();
 }
 
-function validateCourse(card) {
+function validateCard(card) {
   if (!card.name) return 'Name is required.';
-  // if (!course.authorId) return "Author is required.";
-  // if (!course.category) return "Category is required.";
+  if (!card.cardType) return 'Card Type is required.';
+  if (!card.description) return 'Description is required.';
   return '';
 }
