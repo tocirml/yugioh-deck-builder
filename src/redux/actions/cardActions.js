@@ -30,19 +30,26 @@ export const loadCardsSuccess = (cards) => ({
   },
 });
 
-export const orderCards = (cards) => ({
-  type: actions.ORDER_CARDS,
-  payload: {
-    cards,
-  },
-});
-
 //thunks ---------------
 
-export const loadCards = (limit, offset) => async (dispatch) => {
+export const loadCards = ({
+  perPage = 10,
+  offset = 0,
+  sort = 'name',
+  order = 'asc',
+  query = '',
+  filters = {},
+}) => async (dispatch) => {
   dispatch(beginApiCall());
   try {
-    const { cards, totalCount } = await cardApi.getCards(limit, offset);
+    const { cards, totalCount } = await cardApi.getCards(
+      perPage,
+      offset,
+      sort,
+      order,
+      query,
+      filters
+    );
     dispatch(loadCardsSuccess(cards));
     return totalCount;
   } catch (error) {
@@ -63,21 +70,6 @@ export const saveCard = (card) => async (dispatch) => {
     throw error;
   }
 };
-
-// export const saveCard = (card) => (dispatch) => {
-//   dispatch(beginApiCall());
-//   return cardApi
-//     .saveCard(card)
-//     .then((savedCard) => {
-//       card.id
-//         ? dispatch(updateCardSuccess(savedCard))
-//         : dispatch(saveCardSuccess(savedCard));
-//     })
-//     .catch((error) => {
-//       dispatch(apiCallError(error));
-//       throw error;
-//     });
-// };
 
 export const deleteCard = (card) => (dispatch) => {
   dispatch(deleteCardOptimistic(card));

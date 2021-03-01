@@ -7,7 +7,9 @@ export const CardListPage = () => {
   return (
     <main className="card-list">
       <h1 className="card-list-title">CARD DATABASE</h1>
-      <Link className="card-list-add" to="/card">{`Add a Card +`}</Link>
+      <div className="card-list-add">
+        <Link className="card-list-add-link" to="/card">{`Add a Card +`}</Link>
+      </div>
       <CardList />
     </main>
   );

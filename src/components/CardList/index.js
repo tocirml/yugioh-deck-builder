@@ -1,124 +1,127 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { CardListView } from './CardListView';
 import { connect } from 'react-redux';
-import { loadCards, orderCards } from '../../redux/actions/cardActions';
+import { loadCards } from '../../redux/actions/cardActions';
 import { toast } from 'react-toastify';
 import ReactPaginate from 'react-paginate';
 import Spinner from '../common/Spinner';
 import LimitPerPage from '../common/LimitPerPage';
 import PropTypes from 'prop-types';
 import './pagination.scss';
+import debounce from 'lodash.debounce';
 
-const orders = {
-  byName: 'byName',
-  byLevel: 'byLevel',
-  byFrame: 'byFrame',
-  byAttribute: 'byAttribute',
-  byAtk: 'byAtk',
-  byDef: 'byDef',
-  byType: 'byType',
-};
-
-const CardList = ({ cards, loadCards, orderCards, loading }) => {
-  const [order, setOrder] = useState('byName');
-  const [offset, setOffset] = useState(0);
+const CardList = ({ cards, loadCards, loading }) => {
+  const [cardOptions, setCardOptions] = useState({
+    sort: 'name',
+    order: 'asc',
+    perPage: 10,
+    offset: 0,
+    query: '',
+    filters: {},
+  });
   const [pageCount, setPageCount] = useState(0);
-  const [perPage, setPerPage] = useState(10); // limit
+  const [searchQuery, setSearchQuery] = useState('');
   const [initialPage, setInitialPage] = useState(0);
+  const [displayFilterOptions, setDisplayFilterOptions] = useState(false);
 
   useEffect(() => {
-    loadCards(perPage, offset)
+    // console.log(cardOptions);
+    loadCards(cardOptions)
       .then((totalCount) => {
-        setPageCount(Math.ceil(totalCount / perPage));
+        setPageCount(Math.ceil(totalCount / cardOptions.perPage));
       })
       .catch((error) => {
         toast.error(`Loading Cards Failed: ${error.message}`);
       });
-  }, [offset, perPage]);
+  }, [cardOptions]);
 
-  const cardsSplit = (cards, filter) => {
-    let monsters = [],
-      nonMonsters = [];
-    cards.forEach((card) => (filter(card) ? monsters : nonMonsters).push(card));
-    return [monsters, nonMonsters];
+  const handleSortChange = (newSort) => {
+    if (cardOptions.sort === newSort) return;
+    let newOptions = { ...cardOptions, sort: newSort };
+    // if (!newSort.match(/name|cardFrame/)) {
+    //   newOptions.filters = { ...newOptions.filters, cardType: 1 };
+    // } else {
+    //   delete newOptions.filters.cardType;
+    // }
+    setCardOptions(newOptions);
   };
-
-  const orderCardsBy = (orderBy) => {
-    if (orderBy === 'name' || orderBy === 'cardFrame') {
-      return [...cards].sort((a, b) =>
-        a[orderBy] > b[orderBy] ? 1 : b[orderBy] > a[orderBy] ? -1 : 0
-      );
-    } else {
-      const [monsters, nonMonsters] = cardsSplit(
-        cards,
-        (card) => card.cardType === 1
-      );
-
-      monsters.sort((a, b) => {
-        return a[orderBy] > b[orderBy] ? 1 : b[orderBy] > a[orderBy] ? -1 : 0;
-      });
-
-      nonMonsters.sort((a, b) =>
-        a.cardFrame > b.cardFrame ? 1 : b.cardFrame > a.cardFrame ? -1 : 0
-      );
-
-      return [...monsters, ...nonMonsters];
-    }
-  };
-
   const handleOrderChange = (newOrder) => {
-    if (order === newOrder) return;
-    switch (newOrder) {
-      case orders.byName:
-        orderCards(orderCardsBy('name'));
-        break;
-      case orders.byFrame:
-        orderCards(orderCardsBy('cardFrame'));
-        break;
-      case orders.byLevel:
-        orderCards(orderCardsBy('level'));
-        break;
-      case orders.byAttribute:
-        orderCards(orderCardsBy('attribute'));
-        break;
-      case orders.byAtk:
-        orderCards(orderCardsBy('atk'));
-        break;
-      case orders.byDef:
-        orderCards(orderCardsBy('def'));
-        break;
-      case orders.byType:
-        orderCards(orderCardsBy('type'));
-        break;
-      default:
-        console.log('default');
-    }
-    setOrder(newOrder);
+    if (cardOptions.order === newOrder) return;
+    setCardOptions({ ...cardOptions, order: newOrder });
   };
 
   const handlePageClick = (data) => {
     let selected = data.selected;
-    let offset = Math.ceil(selected * perPage);
+    let offset = Math.ceil(selected * cardOptions.perPage);
     setInitialPage(selected);
-    setOffset(offset);
+    setCardOptions({ ...cardOptions, offset });
   };
 
   const limitChangeHandler = (limit) => {
-    setPerPage(limit);
+    setCardOptions({ ...cardOptions, perPage: limit, offset: 0 });
   };
 
-  return loading ? (
-    <Spinner />
-  ) : cards.length === 0 ? (
-    <div className="no-cards">CARD DATABASE IS EMPTY</div>
-  ) : (
+  const filterButtonClick = () => {
+    setDisplayFilterOptions(!displayFilterOptions);
+  };
+
+  const handleFilterUpdate = (event) => {
+    const { name, value } = event.target;
+    let optionsCopy = {
+      ...cardOptions,
+      filters: { ...cardOptions.filters },
+    };
+    if (optionsCopy.filters[name] === value || value === '') {
+      delete optionsCopy.filters[name];
+    } else {
+      optionsCopy.filters[name] = name.match(
+        /cardFrame|cardType|level|atk|def|status/
+      )
+        ? parseInt(value, 10)
+        : value;
+    }
+    setCardOptions(optionsCopy);
+  };
+
+  const debouncedSave = useCallback(
+    debounce(
+      (nextValue) => setCardOptions({ ...cardOptions, query: nextValue }),
+      1000
+    ),
+    []
+  );
+
+  const handleSearchQueryChange = (event) => {
+    const { value } = event.target;
+    setSearchQuery(value);
+    debouncedSave(value);
+  };
+
+  return (
     <>
-      <LimitPerPage limit={perPage} onLimitChange={limitChangeHandler} />
-      <CardListView
-        cards={cards}
-        order={order}
-        onOrderChange={handleOrderChange}
-      />
+      {loading ? (
+        <Spinner />
+      ) : (
+        <>
+          <LimitPerPage
+            limit={cardOptions.perPage}
+            onLimitChange={limitChangeHandler}
+          />
+          <CardListView
+            cards={cards}
+            sort={cardOptions.sort}
+            order={cardOptions.order}
+            filters={cardOptions.filters}
+            searchQuery={searchQuery}
+            displayFilterOptions={displayFilterOptions}
+            onSearchQueryChange={handleSearchQueryChange}
+            filterButtonClick={filterButtonClick}
+            onFilterChange={handleFilterUpdate}
+            onOrderChange={handleOrderChange}
+            onSortChange={handleSortChange}
+          />
+        </>
+      )}
       <ReactPaginate
         previousLabel={'<'}
         nextLabel={'>'}
@@ -139,7 +142,6 @@ const CardList = ({ cards, loadCards, orderCards, loading }) => {
 
 CardList.propTypes = {
   loadCards: PropTypes.func.isRequired,
-  orderCards: PropTypes.func.isRequired,
   cards: PropTypes.array.isRequired,
   loading: PropTypes.bool.isRequired,
 };
@@ -153,7 +155,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   loadCards,
-  orderCards,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardList);

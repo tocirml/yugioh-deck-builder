@@ -15,12 +15,13 @@
     &-options {
       display: flex;
       justify-content: flex-end;
+      flex-wrap: wrap;
     }
   }
 }
 
 .no-cards {
-  margin-top: 50px;
+  margin: 50px auto;
   font-size: 40px;
 }
 

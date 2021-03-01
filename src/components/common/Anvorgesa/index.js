@@ -8,7 +8,7 @@ export const Anvorgesa = ({ toggleHandler }) => {
       href="#"
       data-testid="anvorgesa"
       className="anvorgesa"
-      onClick={() => toggleHandler()}
+      onClick={toggleHandler}
     >
       <span className="bar"></span>
       <span className="bar"></span>

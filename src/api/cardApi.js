@@ -1,9 +1,14 @@
 import { handleResponse, handleError } from './apiUtils';
 const baseUrl = process.env.API_URL + '/cards/';
 
-export const getCards = async (limit, offset) => {
+export const getCards = async (limit, offset, sort, order, query, filters) => {
   try {
-    const response = await fetch(`${baseUrl}?_start=${offset}&_limit=${limit}`);
+    let url = `${baseUrl}?_start=${offset}&_limit=${limit}&_sort=${sort}&_order=${order}&q=${query}`;
+    //apply all filters
+    for (const [key, value] of Object.entries(filters)) {
+      url += `&${key}=${value}`;
+    }
+    const response = await fetch(url);
     const totalCount = response.headers.get('X-Total-Count');
     const cards = await handleResponse(response);
     return { cards, totalCount };

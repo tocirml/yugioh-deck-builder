@@ -1,6 +1,7 @@
-.limit-per-page {
-  text-align: end;
-  margin-right: 20px;
+.order-cards {
+  display: inline-block;
+  position: relative;
+  margin: 10px 20px 10px 0;
   &-button {
     background-color: black;
     color: white;
@@ -21,7 +22,6 @@
     transform: translateY(0);
   }
   &-by {
-    margin-right: 20px;
     opacity: 0;
     visibility: hidden;
     transition: all 0.4s ease;
@@ -33,7 +33,6 @@
     cursor: pointer;
     z-index: 5;
     li {
-      text-align: center;
       padding: 8px;
       list-style: none;
     }

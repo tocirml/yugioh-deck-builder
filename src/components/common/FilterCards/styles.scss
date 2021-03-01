@@ -1,0 +1,98 @@
+.filter {
+  display: inline-block;
+  margin: 10px 20px 10px 0;
+  &-button {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 7px 15px;
+    cursor: pointer;
+  }
+
+  &-button:hover {
+    background-color: #333;
+  }
+  &-button:focus {
+    outline: none;
+    background-color: black;
+  }
+
+  &-options.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%);
+  }
+
+  &-options {
+    padding: 25px 20px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease;
+    transform: translate(-50%, -40%);
+    background-color: black;
+    position: fixed;
+    z-index: 5;
+    top: 50%;
+    left: 50%;
+    width: 90%;
+    max-width: 700px;
+
+    &-monster {
+      margin-top: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+
+    &-close {
+      position: absolute;
+      right: 0;
+      top: 0;
+      button {
+        background-color: black;
+        color: white;
+        border: none;
+        padding: 4px 15px;
+        cursor: pointer;
+      }
+    }
+
+    &-types {
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+
+      button {
+        cursor: pointer;
+        padding: 5px 10px;
+        color: white;
+        background-color: #222;
+        border-radius: 3px;
+      }
+
+      button:hover {
+        background-color: #333;
+      }
+      button:focus {
+        outline: none;
+        background-color: black;
+      }
+      button.active {
+        background-color: #555;
+        border: solid 1px white;
+      }
+    }
+  }
+
+  &-background.active {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0.3;
+    z-index: 4;
+    background-color: black;
+  }
+}

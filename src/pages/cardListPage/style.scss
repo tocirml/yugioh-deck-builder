@@ -5,12 +5,13 @@
     margin-bottom: 20px;
   }
   &-add {
-    display: block;
-    width: 300px;
-    margin: 10px auto;
-    text-decoration: none;
-    border: solid 1px white;
-    background-color: black;
-    color: white;
+    text-align: right;
+    margin: 10px 20px;
+    &-link {
+      padding: 5px;
+      text-decoration: none;
+      background-color: black;
+      color: white;
+    }
   }
 }
