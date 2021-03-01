@@ -9,6 +9,7 @@
     "prestart:api": "node tools/createMockDb.js",
     "start:api": "node tools/apiServer.js",
     "clean:build": "rimraf ./build && mkdir build",
+    "prebuild": "run-p clean:build test:ci",
     "build": "webpack --config webpack.config.prod.js",
     "postbuild": "run-p start:api serve:build",
     "serve:build": "http-server --proxy http://localhost:8080? ./build",
