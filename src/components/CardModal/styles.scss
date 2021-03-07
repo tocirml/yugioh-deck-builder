@@ -1,0 +1,49 @@
+.card-modal {
+  background-color: black;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  border-radius: 5px;
+  padding: 25px 20px 20px;
+  width: 500px;
+
+  &-image {
+    // height: 100%;
+    img {
+      width: 100%;
+    }
+  }
+
+  &-close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 2px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+
+  &-close:hover {
+    background-color: #333;
+    border-radius: 50%;
+  }
+
+  &-backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: black;
+    opacity: 0.5;
+    z-index: 4;
+  }
+}
+
+@media screen and (max-width: 530px) {
+  .card-modal {
+    width: 90%;
+  }
+}

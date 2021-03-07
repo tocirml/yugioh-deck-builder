@@ -13,6 +13,17 @@ import PropTypes from 'prop-types';
 import Spinner from '../common/Spinner';
 import { toast } from 'react-toastify';
 
+let cardOptions = localStorage.getItem('cardOptions')
+  ? JSON.parse(localStorage.getItem('cardOptions'))
+  : {
+      sort: 'name',
+      order: 'asc',
+      perPage: 10,
+      offset: 0,
+      query: '',
+      filters: {},
+    };
+
 const CardForm = ({
   saveCard,
   loadCards,
@@ -29,7 +40,7 @@ const CardForm = ({
 
   useEffect(() => {
     if (cards.length === 0) {
-      loadCards().catch((error) => {
+      loadCards(cardOptions).catch((error) => {
         toast.error(`Loading Cards Failed: ${error.message}`);
       });
     } else {
@@ -84,9 +95,9 @@ const CardForm = ({
 
   const handleDelete = async () => {
     toast.success('Card deleted.');
-    routeProps.history.push('/card-list');
     try {
       await deleteCard(card);
+      routeProps.history.push('/card-list');
     } catch (error) {
       toast.error(`Card deletion failed: ${error.message}`, {
         autoClose: false,

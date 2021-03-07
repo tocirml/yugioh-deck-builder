@@ -19,6 +19,7 @@ export const CardListView = ({
   onOrderChange,
   onFilterChange,
   onSearchQueryChange,
+  onCardModalChange,
 }) => (
   <div className="card-list-view">
     <div className="card-list-options">
@@ -37,7 +38,13 @@ export const CardListView = ({
     </div>
     <div className="card-list-database">
       {cards.length > 0 ? (
-        cards.map((card) => <CardView key={card.id} card={card} />)
+        cards.map((card) => (
+          <CardView
+            key={card.id}
+            card={card}
+            onCardModalChange={onCardModalChange}
+          />
+        ))
       ) : (
         <div className="no-cards">0 RESULTS</div>
       )}
@@ -50,6 +57,7 @@ CardListView.propTypes = {
   onSortChange: PropTypes.func.isRequired,
   onOrderChange: PropTypes.func.isRequired,
   onFilterChange: PropTypes.func.isRequired,
+  onCardModalChange: PropTypes.func.isRequired,
   filterButtonClick: PropTypes.func.isRequired,
   onSearchQueryChange: PropTypes.func.isRequired,
   sort: PropTypes.string.isRequired,

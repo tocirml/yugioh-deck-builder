@@ -1,9 +1,11 @@
 .card-view {
   position: relative;
   width: 136px;
-  margin: 3px;
+  // height: 198px;
+  // margin: 3px;
   overflow: hidden;
   transition: all 0.1s ease;
+  cursor: pointer;
   img {
     width: 100%;
   }

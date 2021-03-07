@@ -9,20 +9,26 @@ import LimitPerPage from '../common/LimitPerPage';
 import PropTypes from 'prop-types';
 import './pagination.scss';
 import debounce from 'lodash.debounce';
+import CardModal from '../CardModal';
 
 const CardList = ({ cards, loadCards, loading }) => {
-  const [cardOptions, setCardOptions] = useState({
-    sort: 'name',
-    order: 'asc',
-    perPage: 10,
-    offset: 0,
-    query: '',
-    filters: {},
-  });
+  const [cardOptions, setCardOptions] = useState(
+    localStorage.getItem('cardOptions')
+      ? JSON.parse(localStorage.getItem('cardOptions'))
+      : {
+          sort: 'name',
+          order: 'asc',
+          perPage: 10,
+          offset: 0,
+          query: '',
+          filters: {},
+        }
+  );
   const [pageCount, setPageCount] = useState(0);
   const [searchQuery, setSearchQuery] = useState('');
   const [initialPage, setInitialPage] = useState(0);
   const [displayFilterOptions, setDisplayFilterOptions] = useState(false);
+  const [modalCard, setModalCard] = useState(null);
 
   useEffect(() => {
     // console.log(cardOptions);
@@ -33,16 +39,14 @@ const CardList = ({ cards, loadCards, loading }) => {
       .catch((error) => {
         toast.error(`Loading Cards Failed: ${error.message}`);
       });
+
+    return () =>
+      localStorage.setItem('cardOptions', JSON.stringify(cardOptions));
   }, [cardOptions]);
 
   const handleSortChange = (newSort) => {
     if (cardOptions.sort === newSort) return;
     let newOptions = { ...cardOptions, sort: newSort };
-    // if (!newSort.match(/name|cardFrame/)) {
-    //   newOptions.filters = { ...newOptions.filters, cardType: 1 };
-    // } else {
-    //   delete newOptions.filters.cardType;
-    // }
     setCardOptions(newOptions);
   };
   const handleOrderChange = (newOrder) => {
@@ -71,7 +75,7 @@ const CardList = ({ cards, loadCards, loading }) => {
       ...cardOptions,
       filters: { ...cardOptions.filters },
     };
-    if (optionsCopy.filters[name] === value || value === '') {
+    if (optionsCopy.filters[name] == value || value === '') {
       delete optionsCopy.filters[name];
     } else {
       optionsCopy.filters[name] = name.match(
@@ -97,6 +101,10 @@ const CardList = ({ cards, loadCards, loading }) => {
     debouncedSave(value);
   };
 
+  const handleCardModal = (card) => {
+    setModalCard(card);
+  };
+
   return (
     <>
       {loading ? (
@@ -114,6 +122,7 @@ const CardList = ({ cards, loadCards, loading }) => {
             filters={cardOptions.filters}
             searchQuery={searchQuery}
             displayFilterOptions={displayFilterOptions}
+            onCardModalChange={handleCardModal}
             onSearchQueryChange={handleSearchQueryChange}
             filterButtonClick={filterButtonClick}
             onFilterChange={handleFilterUpdate}
@@ -136,6 +145,7 @@ const CardList = ({ cards, loadCards, loading }) => {
         subContainerClassName={'pages pagination'}
         activeClassName={'active'}
       />
+      <CardModal card={modalCard} onCardModalChange={handleCardModal} />
     </>
   );
 };

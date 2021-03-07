@@ -11,8 +11,11 @@
     "clean:build": "rimraf ./build && mkdir build",
     "prebuild": "run-p clean:build test:ci",
     "build": "webpack --config webpack.config.prod.js",
+    "build:prod": "webpack --config webpack.config.prod.js",
     "postbuild": "run-p start:api serve:build",
-    "serve:build": "http-server --proxy http://localhost:8080? ./build",
+    "serve:build2": "http-server --proxy http://localhost:8080? ./build",
+    "serve:build": "node tools/server.js",
+    "serve:prod": "run-p clean:build build:prod serve:build start:api",
     "test": "jest --coverage --watch",
     "test:ci": "jest"
   },

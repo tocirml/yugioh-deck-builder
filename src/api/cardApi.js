@@ -1,16 +1,27 @@
 import { handleResponse, handleError } from './apiUtils';
 const baseUrl = process.env.API_URL + '/cards/';
 
+let cache = [];
+
 export const getCards = async (limit, offset, sort, order, query, filters) => {
   try {
-    let url = `${baseUrl}?_start=${offset}&_limit=${limit}&_sort=${sort}&_order=${order}&q=${query}`;
+    let response,
+      totalCount,
+      cards,
+      url = `${baseUrl}?_start=${offset}&_limit=${limit}&_sort=${sort}&_order=${order}&q=${query}`;
     //apply all filters
     for (const [key, value] of Object.entries(filters)) {
       url += `&${key}=${value}`;
     }
-    const response = await fetch(url);
-    const totalCount = response.headers.get('X-Total-Count');
-    const cards = await handleResponse(response);
+    if (cache[url]) {
+      cards = cache[url].cards;
+      totalCount = cache[url].totalCount;
+    } else {
+      response = await fetch(url);
+      totalCount = response.headers.get('X-Total-Count');
+      cards = await handleResponse(response);
+      cache[url] = { cards, totalCount };
+    }
     return { cards, totalCount };
   } catch (error) {
     handleError(error);
@@ -24,7 +35,9 @@ export const saveCard = async (card) => {
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify(card),
     });
-    return await handleResponse(response);
+    const savedCard = await handleResponse(response);
+    if (!card.id) cache = []; // clearing cache cuz there was changes on DB
+    return savedCard;
   } catch (error) {
     handleError(error);
   }
@@ -34,6 +47,7 @@ export const deleteCard = async (cardId) => {
   try {
     const response = await fetch(baseUrl + cardId, { method: 'DELETE' });
     await handleResponse(response);
+    cache = []; // clearing cache cuz there was changes on DB
   } catch (error) {
     handleError(error);
   }
