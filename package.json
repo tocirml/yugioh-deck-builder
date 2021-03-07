@@ -15,7 +15,7 @@
     "postbuild": "run-p start:api serve:build",
     "serve:build2": "http-server --proxy http://localhost:8080? ./build",
     "serve:build": "node tools/server.js",
-    "serve:prod": "run-p clean:build build:prod serve:build start:api",
+    "heroku-postbuild": "run-p clean:build build:prod serve:build start:api",
     "test": "jest --coverage --watch",
     "test:ci": "jest"
   },
