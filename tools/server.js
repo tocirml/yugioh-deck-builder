@@ -7,18 +7,18 @@ var fallback = require('express-history-api-fallback');
 const path = require('path');
 const publicPath = path.join(__dirname, '..', 'build');
 
-const port = process.env.PORT || 3000;
+// const port = process.env.PORT || 3000;
 
 // use the express-static middleware
 app.use(express.static(publicPath));
 app.use(fallback('index.html', { publicPath }));
 
 // define the first route
-app.get('/', function (req, res) {
-  res.send('<h1>Hello World!</h1>');
-});
+// app.get('/', function (req, res) {
+//   res.send('<h1>Hello World!</h1>');
+// });
 
-// start the server listening for requests
-app.listen(port, () =>
-  console.log('Server is running on http://localhost:3000')
-);
+// // start the server listening for requests
+// app.listen(port, () =>
+//   console.log('Server is running on http://localhost:3000')
+// );
