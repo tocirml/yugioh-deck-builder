@@ -14,13 +14,15 @@ app.use(express.static(publicPath));
 // app.use(fallback('index.html', { publicPath }));
 
 // define the first route
-// app.get('/', function (req, res) {
-//   res.send('<h1>Hello World!</h1>');
+app.get('/', function (req, res) {
+  res.send('<h1>Hello World!</h1>');
+});
+
+// app.get('*', (req, res) => {
+//   res.sendFile('index.html');
 // });
 
-app.get('*', (req, res) => {
-  res.sendFile('index.html');
-});
+// app.use(history())
 
 // start the server listening for requests
 app.listen(port, () =>
