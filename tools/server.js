@@ -19,7 +19,7 @@ app.use(express.static(publicPath));
 // });
 
 app.get('*', (req, res) => {
-  res.sendFile(path.resolve(publicPath, 'index.html'));
+  res.sendFile('index.html');
 });
 
 // start the server listening for requests
