@@ -36,6 +36,7 @@
   "author": "Roberto Muñoz",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.17.1",
     "immer": "^8.0.1",
     "lodash": "^4.17.21",
     "lodash.debounce": "^4.0.8",
