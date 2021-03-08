@@ -3,7 +3,7 @@
 // create an express app
 const express = require('express');
 const app = express();
-// var fallback = require('express-history-api-fallback');
+var fallback = require('express-history-api-fallback');
 const path = require('path');
 const publicPath = path.join(__dirname, '..', 'build');
 
@@ -11,7 +11,7 @@ const port = process.env.PORT || 3000;
 
 // use the express-static middleware
 app.use(express.static(publicPath));
-// app.use(fallback('index.html', { publicPath }));
+app.use(fallback('index.html', { publicPath }));
 
 // define the first route
 app.get('/', function (req, res) {
