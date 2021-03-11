@@ -22,9 +22,7 @@ app.get('/', function (req, res) {
 //   res.sendFile('index.html');
 // });
 
-// app.use(history())
+// app.use(history());
 
 // start the server listening for requests
-app.listen(port, () =>
-  console.log('Server is running on http://localhost:3000')
-);
+app.listen(port, () => console.log(`Server is running on ${port}`));

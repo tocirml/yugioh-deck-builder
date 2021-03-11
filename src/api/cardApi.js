@@ -30,7 +30,7 @@ export const getCards = async (limit, offset, sort, order, query, filters) => {
 
 export const saveCard = async (card) => {
   try {
-    const response = await fetch(baseUrl + (card.id || ''), {
+    const response = await fetch(`${baseUrl}${card.id || ''}`, {
       method: card.id ? 'PUT' : 'POST', // POST for create, PUT to update when id already exists.
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify(card),
@@ -45,7 +45,7 @@ export const saveCard = async (card) => {
 
 export const deleteCard = async (cardId) => {
   try {
-    const response = await fetch(baseUrl + cardId, { method: 'DELETE' });
+    const response = await fetch(`${baseUrl}${cardId}`, { method: 'DELETE' });
     await handleResponse(response);
     cache = []; // clearing cache cuz there was changes on DB
   } catch (error) {

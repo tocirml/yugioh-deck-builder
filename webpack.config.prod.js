@@ -3,6 +3,7 @@ const path = require('path'); // from node
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpackBundleAnalyzer = require('webpack-bundle-analyzer');
+// const envVars = require('../.env');
 
 process.env.NODE_ENV = 'production';
 
@@ -56,7 +57,9 @@ module.exports = {
     new MiniCssExtractPlugin({ filename: '[name].[contenthash].css' }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-      'process.env.API_URL': JSON.stringify('http://localhost:3001'),
+      'process.env.API_URL': JSON.stringify(
+        'https://powerful-peak-13156.herokuapp.com'
+      ),
     }),
     new HtmlWebpackPlugin({
       hash: true,
