@@ -11,11 +11,11 @@ const port = process.env.PORT || 3000;
 
 // use the express-static middleware
 app.use(express.static(publicPath));
-app.use(fallback('index.html', { publicPath }));
+app.use(fallback('/index.html', { root: publicPath }));
 
 // define the first route
 app.get('/', function (req, res) {
-  res.send('<h1>Hello World!</h1>');
+  res.sendFile('/index.html', { root: publicPath });
 });
 
 // app.get('*', (req, res) => {
